@@ -1,4 +1,5 @@
 import { Ticket } from '@acme/shared-models';
+import { Link } from 'react-router-dom';
 import styles from './tickets.module.css';
 
 export interface TicketsProps {
@@ -13,7 +14,7 @@ export function Tickets(props: TicketsProps) {
         <ul>
           {props.tickets.map((t) => (
             <li key={t.id}>
-              Ticket: {t.id}, {t.description}
+              <Link to={`/tickets/${t.id}`}>{t.description}</Link>
             </li>
           ))}
         </ul>
