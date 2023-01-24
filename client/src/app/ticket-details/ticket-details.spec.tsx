@@ -34,7 +34,7 @@ describe('TicketDetails', () => {
     const { getByText } = render(<BrowserRouter><TicketDetails /></BrowserRouter>);
     await waitFor(() => {
       expect(getByText('Install a monitor arm')).toBeTruthy();
-      expect(getByText('Alice')).toBeTruthy();
+      expect(getByText('Asignee: Alice')).toBeTruthy();
     });
   })
 });

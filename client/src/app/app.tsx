@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <div className={styles['app']}>
-      <h1>Ticketing App</h1>
+      <h1 className="pb-6"><a href="/">Ticketing App</a></h1>
       <Routes>
         <Route path="/" element={<Tickets tickets={tickets} />} />
         {/* Hint: Try `npx nx g component TicketDetails --project=client --no-export` to generate this component  */}

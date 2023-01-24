@@ -53,7 +53,7 @@ export function TicketDetails() {
         case 'assignee':
           return assignee ? assignee.name : 'Loading...';
         case 'completed':
-          return ticket.completed;
+          return ticket.completed ? '✅' : '⭕️';
         default:
           return 'Loading...';
       }
@@ -64,9 +64,11 @@ export function TicketDetails() {
 
   return (
     <div className={styles['container']}>
-      <h1>Welcome to TicketDetails!</h1>
-      <li>{loadTicketDescription('description')}</li>
-      <li>{loadTicketDescription('assignee')}</li>
+      <h2 className="border-b-2 border-black mb-4">{loadTicketDescription('description')}</h2>
+      <ul className="list-none">
+        <li>Completed: {loadTicketDescription('completed')}</li>
+        <li>Asignee: {loadTicketDescription('assignee')}</li>
+      </ul>
     </div>
   );
 }

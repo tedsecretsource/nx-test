@@ -6,6 +6,10 @@
   html {
     font-family: Proxima Nova, system-ui, sans-serif;
   }
+
+  li {
+    font-size: 14px;
+  }
 }
 
 .app {
