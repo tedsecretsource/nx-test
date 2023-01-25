@@ -41,7 +41,6 @@ export function TicketDetails() {
     }
 
     fetchTicket();
-    console.log(ticket)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
