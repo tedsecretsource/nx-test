@@ -10,6 +10,32 @@ export interface TicketsProps {
 }
 
 export function Tickets(props: TicketsProps) {
+
+  const toggleTicketStatus = (ticket: Ticket, event: React.MouseEvent<HTMLElement>) => {
+    const METHOD = ticket.completed ? 'DELETE' : 'PUT';
+    fetch(`/api/tickets/${ticket.id}/complete`, {
+      method: METHOD,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ completed: !ticket.completed })
+    })
+    .then((response) => {
+      if ( 204 === response.status ) {
+        const newTickets: Ticket[] = props.tickets.map((t) => {
+          if (t.id === ticket.id) {
+            t.completed = !t.completed
+          }
+          return t;
+        });
+        props.setTickets(newTickets);
+      } else {
+        throw new Error('Something went wrong');
+      }
+    });
+  };
+
+    
   return (
     <div className={styles['tickets']}>
       <AddTicketForm users={props.users} tickets={props.tickets} setTickets={props.setTickets} />
@@ -18,7 +44,7 @@ export function Tickets(props: TicketsProps) {
         <ul className="list-none">
           {props.tickets.map((t) => (
             <li key={t.id} className="flex justify-between gap-2">
-              <span className="justify-self-start">{t.completed ? '✅' : '⭕️'}</span>
+              <span className="justify-self-start" onClick={(e) => toggleTicketStatus(t, e)}>{t.completed ? '✅' : '⭕️'}</span>
               <Link className="grow self-start" to={`/tickets/${t.id}`}>{t.description}</Link>
               <Link className="" to={`/users/${t.assigneeId}`}>{t.assigneeId}</Link>
               <Link to={`/tickets/${t.id}/assign`} className="">Edit</Link>
