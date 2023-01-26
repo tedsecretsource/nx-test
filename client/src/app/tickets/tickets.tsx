@@ -15,7 +15,7 @@ export function Tickets(props: TicketsProps) {
   const [filter, setFilter] = useState('');
 
   const toggleTicketStatus = (ticket: Ticket, event: React.MouseEvent<HTMLElement>) => {
-    let originalIcon = event.currentTarget.innerHTML;
+    const originalIcon = event.currentTarget.innerHTML;
     event.currentTarget.innerHTML = '⏳';
     const METHOD = ticket.completed ? 'DELETE' : 'PUT';
     fetch(`/api/tickets/${ticket.id}/complete`, {
@@ -47,7 +47,7 @@ export function Tickets(props: TicketsProps) {
   };
 
   const filterTickets = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const filteredTickets = props.tickets.filter((t) => t.description.includes(e.target.value));
+    const filteredTickets = props.tickets.filter((t) => t.description.toLowerCase().includes(e.target.value));
     setFilteredTickets(filteredTickets);
     setFilter(e.target.value);
   };
