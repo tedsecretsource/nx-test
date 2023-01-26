@@ -51,7 +51,7 @@ export function Tickets(props: TicketsProps) {
               <span className="justify-self-start" onClick={(e) => toggleTicketStatus(t, e)}>{t.completed ? '✅' : '⭕️'}</span>
               <Link className="grow self-start" to={`/tickets/${t.id}`}>{t.description}</Link>
               <Link className="" to={`/users/${t.assigneeId}`}>{getUsernameFromId(t.assigneeId)}</Link>
-              <Link to={`/tickets/${t.id}/assign`} className="">Edit</Link>
+              <Link to={`/tickets/${t.id}/assign`} className="">Assign</Link>
             </li>
           ))}
         </ul>
