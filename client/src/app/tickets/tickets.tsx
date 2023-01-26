@@ -35,7 +35,11 @@ export function Tickets(props: TicketsProps) {
     });
   };
 
-    
+  const getUsernameFromId = (id: number | null) => {
+    const user = props.users.find((u) => u.id === id);
+    return user ? user.name : 'Unassigned';
+  };
+
   return (
     <div className={styles['tickets']}>
       <AddTicketForm users={props.users} tickets={props.tickets} setTickets={props.setTickets} />
@@ -46,7 +50,7 @@ export function Tickets(props: TicketsProps) {
             <li key={t.id} className="flex justify-between gap-2">
               <span className="justify-self-start" onClick={(e) => toggleTicketStatus(t, e)}>{t.completed ? '✅' : '⭕️'}</span>
               <Link className="grow self-start" to={`/tickets/${t.id}`}>{t.description}</Link>
-              <Link className="" to={`/users/${t.assigneeId}`}>{t.assigneeId}</Link>
+              <Link className="" to={`/users/${t.assigneeId}`}>{getUsernameFromId(t.assigneeId)}</Link>
               <Link to={`/tickets/${t.id}/assign`} className="">Edit</Link>
             </li>
           ))}

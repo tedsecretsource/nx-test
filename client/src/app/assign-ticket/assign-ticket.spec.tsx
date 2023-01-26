@@ -23,7 +23,7 @@ beforeEach(() => {
 
 describe('AssignTicket', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<AssignTicket users={users} ticket={tickets[1]} />);
+    const { baseElement } = render(<AssignTicket users={users} tickets={tickets} />);
     expect(baseElement).toBeTruthy();
   });
 
@@ -31,7 +31,7 @@ describe('AssignTicket', () => {
     fetch
       .once(JSON.stringify(users));
     act(() => {
-      render(<AssignTicket users={users} ticket={tickets[1]} />);
+      render(<AssignTicket users={users} tickets={tickets} />);
     });
     await waitFor(() => {
       expect(screen.getByRole('combobox')).toBeInTheDocument();
